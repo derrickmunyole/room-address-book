@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -73,4 +74,9 @@ dependencies {
     implementation ("androidx.room:room-runtime:$roomVersion")
     annotationProcessor ("androidx.room:room-compiler:$roomVersion")
     ksp ("androidx.room:room-compiler:$roomVersion")
+
+    //Dagger hilt dependency
+    val daggerVersion = "2.48"
+    implementation("com.google.dagger:hilt-android:$daggerVersion")
+    ksp("com.google.dagger:hilt-compiler:$daggerVersion")
 }

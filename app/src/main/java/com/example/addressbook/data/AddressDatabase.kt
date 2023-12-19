@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
     version = 1
 )
 abstract class AddressDatabase(
-    val dao: AddressDao
 ): RoomDatabase() {
-
+    abstract fun dao(): AddressDao
 }
