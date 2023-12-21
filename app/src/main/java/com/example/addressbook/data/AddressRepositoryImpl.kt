@@ -2,20 +2,22 @@ package com.example.addressbook.data
 
 import kotlinx.coroutines.flow.Flow
 
-class AddressRepositoryImpl: AddressRepository {
+class AddressRepositoryImpl(
+    private val dao: AddressDao
+): AddressRepository {
     override suspend fun saveAddress(address: Address) {
-        TODO("Not yet implemented")
+        dao.saveAddress(address)
     }
 
     override suspend fun deleteAddress(address: Address) {
-        TODO("Not yet implemented")
+        dao.deleteAddress(address)
     }
 
     override fun orderAddressByFirstName(): Flow<List<Address>> {
-        TODO("Not yet implemented")
+       return dao.orderAddressByFirstName()
     }
 
     override fun orderAddressByLastName(): Flow<List<Address>> {
-        TODO("Not yet implemented")
+        return dao.orderAddressByLastName()
     }
 }
