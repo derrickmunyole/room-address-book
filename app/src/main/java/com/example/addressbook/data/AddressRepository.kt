@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 interface AddressRepository {
     suspend fun saveAddress(address: Address)
     suspend fun deleteAddress(address: Address)
+    fun getAddresses(): Flow<List<Address>>
+    suspend fun getAddressById(id: Int): Address?
     fun orderAddressByFirstName(): Flow<List<Address>>
     fun orderAddressByLastName(): Flow<List<Address>>
 }

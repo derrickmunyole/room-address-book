@@ -1,4 +1,4 @@
-package com.example.addressbook.ui.theme
+package com.example.addressbook.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

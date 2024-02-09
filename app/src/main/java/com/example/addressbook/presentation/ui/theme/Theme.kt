@@ -1,4 +1,4 @@
-package com.example.addressbook.ui.theme
+package com.example.addressbook.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -22,8 +22,10 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
+//    primary = Purple40,
+    primary = ColorPrimary,
+//    secondary = PurpleGrey40,
+    secondary = ColorSecondary,
     tertiary = Pink40
 
     /* Other default colors to override

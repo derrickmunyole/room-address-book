@@ -13,6 +13,14 @@ class AddressRepositoryImpl(
         dao.deleteAddress(address)
     }
 
+    override fun getAddresses(): Flow<List<Address>> {
+        return dao.getAddresses()
+    }
+
+    override suspend fun getAddressById(id: Int): Address?{
+        return dao.getAddressById(id)
+    }
+
     override fun orderAddressByFirstName(): Flow<List<Address>> {
        return dao.orderAddressByFirstName()
     }
