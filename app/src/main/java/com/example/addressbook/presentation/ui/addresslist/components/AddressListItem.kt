@@ -1,5 +1,6 @@
 package com.example.addressbook.presentation.ui.addresslist.components
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,10 +17,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -35,20 +41,31 @@ fun AddressItem(
     address: Address,
     modifier: Modifier
 ) {
-    Row(modifier= modifier)
+    ElevatedCard(modifier= modifier)
     {
-        Image(
-            painter = painterResource(id = R.drawable.attractive),
-            contentDescription = "A girl",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(80.dp)
-                .clip(CircleShape)
-        )
-        Spacer(modifier = Modifier.width(6.dp))
-        Column(modifier = Modifier.height(80.dp), verticalArrangement = Arrangement.Center) {
-            Text("${address.firstName} ${address.lastName}", style = MaterialTheme.typography.titleMedium)
-            Text(address.phoneNumber, style = MaterialTheme.typography.bodySmall)
+        Row(modifier= Modifier
+            .fillMaxSize()
+            .padding(vertical = 12.dp, horizontal = 16.dp),
+            Arrangement.SpaceBetween,
+            Alignment.CenterVertically
+
+        ) {
+            Row {
+                Image(
+                    painter = painterResource(id = R.drawable.attractive),
+                    contentDescription = "A girl",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(80.dp)
+                        .clip(CircleShape)
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Column(modifier = Modifier.height(80.dp), verticalArrangement = Arrangement.Center) {
+                    Text("${address.firstName} ${address.lastName}", style = MaterialTheme.typography.titleMedium)
+                    Text(address.phoneNumber, style = MaterialTheme.typography.bodySmall)
+                }
+            }
+            Icon(imageVector = Icons.Filled.Delete, contentDescription = null, tint= ColorPrimary)
         }
     }
 }

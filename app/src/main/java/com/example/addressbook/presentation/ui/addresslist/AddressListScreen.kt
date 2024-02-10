@@ -111,13 +111,7 @@ fun AddressListScreen(
                                     address = address,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .border(
-                                            width = 2.dp,
-                                            color = ColorPrimary,
-                                            shape = RoundedCornerShape(8.dp)
-                                        )
                                         .background(color = CardColor, shape = RoundedCornerShape(8.dp))
-                                        .padding(vertical = 12.dp, horizontal = 16.dp)
                                         .clickable {
                                             onNavigate?.invoke(UIEvent.Navigate(Routes.ADDRESS_DETAIL + "?addressId=${address.id}"))
                                         },

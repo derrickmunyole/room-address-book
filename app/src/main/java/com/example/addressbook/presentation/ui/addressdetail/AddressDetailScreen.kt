@@ -54,7 +54,7 @@ fun AddressDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("AddressBook") },
+                title = { Text("Profile") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White

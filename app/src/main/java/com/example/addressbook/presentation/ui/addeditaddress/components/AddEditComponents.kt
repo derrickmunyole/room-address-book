@@ -130,51 +130,27 @@ fun LabelText(label: String, fontWeight: FontWeight) {
     )
 }
 
-
-
 @Composable
 fun InputTextField(
     modifier: Modifier,
     onValueChange: (String) -> Unit,
     addressItem: String
 ) {
-    val text = remember { mutableStateOf("") }
-    if(addressItem != "") {
-        BasicTextField(
-            value = addressItem,
-            onValueChange = { newValue ->
-                // Update the local state for UI recomposition
-                text.value = newValue
-
-                // Send the updated value to the ViewModel
-                onValueChange(newValue)
-            },
-            modifier= modifier,
-            decorationBox = { innerTextField ->
-                Column(modifier=Modifier.padding(12.dp)) {
-                    innerTextField()
-                }
+    BasicTextField(
+        value = addressItem,
+        onValueChange = { newValue ->
+            // Send the updated value to the ViewModel
+            onValueChange(newValue)
+        },
+        modifier = modifier,
+        decorationBox = { innerTextField ->
+            Column(modifier = Modifier.padding(12.dp)) {
+                innerTextField()
             }
-        )
-    } else {
-        BasicTextField(
-            value = text.value,
-            onValueChange = { newValue ->
-                // Update the local state for UI recomposition
-                text.value = newValue
-
-                // Send the updated value to the ViewModel
-                onValueChange(newValue)
-            },
-            modifier = modifier,
-            decorationBox = { innerTextField ->
-                Column(modifier = Modifier.padding(12.dp)) {
-                    innerTextField()
-                }
-            }
-        )
-    }
+        }
+    )
 }
+
 
 @Composable
 fun SaveButton(onEvent: (AddEditEvent) -> Unit) {

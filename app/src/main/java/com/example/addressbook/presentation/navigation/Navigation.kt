@@ -35,7 +35,7 @@ fun Navigation() {
             )
         ) {
             AddEditAddressScreen(onPopBackStack = {
-                navController.popBackStack()
+                navController.navigate(Routes.ADDRESS_LIST)
             })
         }
         composable(Routes.ADDRESS_DETAIL + "?addressId={addressId}",

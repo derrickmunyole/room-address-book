@@ -31,29 +31,25 @@ class AddEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _uiEvent = Channel<UIEvent>()
-
-    private val uiEvent = _uiEvent.receiveAsFlow()
-
-    private val _addEditEvent = Channel<AddEditEvent>()
-    val addEditEvent = _addEditEvent.receiveAsFlow()
+    private var _uiEvent = Channel<UIEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     var address by mutableStateOf<Address?>(null)
         private set
 
-    var _firstName = MutableStateFlow("")
+    private var _firstName = MutableStateFlow("")
     val firstName: StateFlow<String> = _firstName.asStateFlow()
 
-    var _lastName = MutableStateFlow("")
+    private var _lastName = MutableStateFlow("")
     val lastName: StateFlow<String> = _lastName.asStateFlow()
 
-    var _phoneNumber = MutableStateFlow("")
+    private var _phoneNumber = MutableStateFlow("")
     val phoneNumber: StateFlow<String> = _phoneNumber.asStateFlow()
 
-    var _email = MutableStateFlow("")
+    private var _email = MutableStateFlow("")
     val email: StateFlow<String> = _email.asStateFlow()
 
-    var _notes = MutableStateFlow("")
+    private var _notes = MutableStateFlow("")
     val notes: StateFlow<String> = _notes.asStateFlow()
 
     var imageUri by mutableStateOf("")
@@ -76,7 +72,7 @@ class AddEditViewModel @Inject constructor(
 
     }
 
-    private fun resetFields() {
+    fun resetFields() {
         _firstName.value = ""
         _lastName.value = ""
         _phoneNumber.value = ""
@@ -139,6 +135,7 @@ class AddEditViewModel @Inject constructor(
 
                             }
                             resetFields()
+                            sendUiEvent(UIEvent.PopBackStack )
                         } catch (e: Exception) {
                             e.localizedMessage?.let { Log.d("Error occurred", it) }
                         }
@@ -149,6 +146,12 @@ class AddEditViewModel @Inject constructor(
         }
 
 
+    }
+
+    fun sendUiEvent(event: UIEvent) {
+        viewModelScope.launch {
+            _uiEvent.send(event)
+        }
     }
 
     val onImageSelected: (Uri?) -> Unit = { uri ->
